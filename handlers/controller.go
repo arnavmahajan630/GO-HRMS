@@ -5,9 +5,8 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func RoutesInit(app * fiber.App) {
-	// CRUD API's
-
+func RoutesInit(app *fiber.App) {
+	// CRUD Endpoints
 	app.Get("/employee", helpers.GetEmployees)
 	app.Post("/employee", helpers.AddEmployees)
 	app.Put("/employee/:id", helpers.EditEmployee)

@@ -8,22 +8,28 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-var mg MongoInstance
+var Mg MongoInstance
 
 const (
 	dbName = "hrms-db"
 	dbUrl = "mongodb://localhost:27017"
 )
 
-func Connect() error {
+func TimeOutCkeck() (context.Context, context.CancelFunc){
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	return ctx, cancel;
+}
+
+func Connect() error {
+	ctx , cancel := TimeOutCkeck()
 	defer cancel()
 	client , err := mongo.Connect(ctx, options.Client().ApplyURI(dbUrl))
 	if( err != nil) {return err}
 
-	mg = MongoInstance{
+	Mg = MongoInstance{
 		Client: client,
-		Db: client.Database(dbName),
+		DB: client.Database(dbName),
 	}
 
 	return nil
