@@ -5,27 +5,31 @@ import (
 	"log"
 
 	db "github.com/arnavmahajan630/go-hrms-api/DB"
+	"github.com/arnavmahajan630/go-hrms-api/handlers"
 	"github.com/gofiber/fiber/v2"
 )
 
 
 
 func main() {
-	err := db.Connect()
-	if err != nil {
+	if err := db.Connect(); err != nil {
 		log.Fatal(err)
 	}
-	 app := fiber.New()
-	// app.Get("/employee")
-	// app.Post("/employee")
-	// app.Put("/employee/:id")
-	// app.Delete("/employee/:id")
-    
+	// connected to Mongodb
 
-	fmt.Println("Server Started on Port 8080")
-	err = app.Listen(":8080")
-	if err != nil {
-		fmt.Println(err)
+	app := fiber.New()
+	handlers.RoutesInit(app)
+
+	// initialized routes
+	
+	fmt.Println("Server started successfully on port 8080")
+	if err := app.Listen(":8080"); err != nil {
+		log.Fatal(err)
 	}
+
+	// server started and running
+
+	
+	
 
 }
