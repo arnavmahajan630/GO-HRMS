@@ -27,8 +27,8 @@ A fast and lightweight Human Resource Management System (HRMS) API built using [
 ├── models/
 │   └── models.go         # Employee struct and schema
 ├── handlers/
-│   └── employee.go       # Route handlers for /employee
-├── handlers/             # Helpers for handlers
+│   └── models.go       # Route handlers for /employee
+├── helpers/             # Helpers for handlers
 ├── go.mod / go.sum       # Go modules and dependencies
 ```
 
